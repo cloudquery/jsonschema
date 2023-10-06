@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/invopop/jsonschema/internal/testdata/odd",
+  "$ref": "#/$defs/Odd",
+  "$defs": {
+    "Dummy": {
+      "properties": {
+        "A": {
+          "type": "string"
+        },
+        "Dummy": {
+          "$ref": "#/$defs/Dummy_1"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "A",
+        "Dummy"
+      ]
+    },
+    "Dummy_1": {
+      "properties": {
+        "A": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "A"
+      ]
+    },
+    "Dummy_2": {
+      "properties": {
+        "B": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "B"
+      ]
+    },
+    "Odd": {
+      "properties": {
+        "Dummy1": {
+          "$ref": "#/$defs/Dummy"
+        },
+        "Dummy1a": {
+          "$ref": "#/$defs/Dummy"
+        },
+        "Dummy2": {
+          "$ref": "#/$defs/Dummy_1"
+        },
+        "Dummy2a": {
+          "$ref": "#/$defs/Dummy_1"
+        },
+        "Dummy3": {
+          "$ref": "#/$defs/Dummy_2"
+        },
+        "Dummy3a": {
+          "$ref": "#/$defs/Dummy_2"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "Dummy1",
+        "Dummy1a",
+        "Dummy2",
+        "Dummy2a",
+        "Dummy3",
+        "Dummy3a"
+      ]
+    }
+  }
+}
