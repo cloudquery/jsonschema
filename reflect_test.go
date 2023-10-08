@@ -660,6 +660,31 @@ func TestJSONSchemaAlias(t *testing.T) {
 }
 
 func TestClashingTypes(t *testing.T) {
+	type Odd struct {
+		SomeBaseType
+		Internal testdata.Odd `json:"internal"`
+		Link     *Odd         `json:"link"`
+	}
+
 	r := &Reflector{}
-	compareSchemaOutput(t, "fixtures/clashing_types.json", r, &testdata.Odd{})
+	compareSchemaOutput(t, "fixtures/clashing_types.json", r, &Odd{})
+}
+
+func TestShadowedClashingTypes(t *testing.T) {
+	type (
+		Odd struct {
+			Base GrandfatherType `json:"base"`
+		}
+		GrandfatherTypePtr *GrandfatherType
+	)
+
+	{
+		type GrandfatherType struct {
+			Odd     Odd                `json:"odd"`
+			Link    *GrandfatherType   `json:"link"`
+			PkgLink GrandfatherTypePtr `json:"pkg_link"`
+		}
+		r := &Reflector{}
+		compareSchemaOutput(t, "fixtures/shadowed_clashing_types.json", r, &GrandfatherType{})
+	}
 }
