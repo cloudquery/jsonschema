@@ -632,8 +632,8 @@ func TestJSONSchemaFormat(t *testing.T) {
 
 	r := &Reflector{}
 	compareSchemaOutput(t, "fixtures/with_custom_format.json", r, &WithCustomFormat{})
-	fixtureContains(t, "fixtures/unsigned_int_handling.json", `"format": "date"`)
-	fixtureContains(t, "fixtures/unsigned_int_handling.json", `"format": "odd"`)
+	fixtureContains(t, "fixtures/with_custom_format.json", `"format": "date"`)
+	fixtureContains(t, "fixtures/with_custom_format.json", `"format": "odd"`)
 }
 
 type AliasObjectA struct {
