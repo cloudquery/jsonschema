@@ -1081,7 +1081,10 @@ func (r *Reflector) reflectFieldName(f reflect.StructField) (string, bool, bool,
 
 	var nullable bool
 	if r.NullableFromType {
-		nullable = isNullable(f.Type.Kind())
+		// we might've already added the nullability wrapper in Reflector.reflectTypeToSchema
+		if f.Type.Kind() != reflect.Pointer {
+			nullable = isNullable(f.Type.Kind())
+		}
 	} else {
 		nullable = nullableFromJSONSchemaTags(schemaTags)
 	}
