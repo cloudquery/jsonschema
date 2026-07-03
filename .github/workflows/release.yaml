@@ -11,6 +11,9 @@ on:
     #paths-ignore:
     #  - "docs/**"
 
+permissions:
+  contents: write
+
 jobs:
   tag-build-publish:
     name: Tag
